@@ -16,15 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.DataFormatException;
 import java.util.zip.GZIPInputStream;
-import org.jnbt.CompoundTag;
-import org.jnbt.IntTag;
-import org.jnbt.ListTag;
-import org.jnbt.NBTInputStream;
-import org.jnbt.ShortTag;
-import org.jnbt.StringTag;
-import org.jnbt.Tag;
+import io.dallen.utils.jnbt.CompoundTag;
+import io.dallen.utils.jnbt.IntTag;
+import io.dallen.utils.jnbt.ListTag;
+import io.dallen.utils.jnbt.NBTInputStream;
+import io.dallen.utils.jnbt.ShortTag;
+import io.dallen.utils.jnbt.StringTag;
+import io.dallen.utils.jnbt.Tag;
 import org.bukkit.util.BlockVector;
-import org.jnbt.ByteArrayTag;
+import io.dallen.utils.jnbt.ByteArrayTag;
 
 /**
  * Based on code from sk98q's WorldEdit
