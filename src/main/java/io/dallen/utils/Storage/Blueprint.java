@@ -7,6 +7,7 @@ import java.util.Arrays;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 /**
@@ -52,6 +53,10 @@ public class Blueprint implements Cloneable {
         this.high = h;
         this.blocks = blocks.clone();
         offSet = new Point(0, 0);
+    }
+    
+    public Blueprint(BlueBlock[][][] blocks) {
+        this(blocks.length, blocks[0].length, blocks[0][0].length, blocks);
     }
 
     public static enum buildType {
@@ -148,10 +153,30 @@ public class Blueprint implements Cloneable {
         }
     }
 
-    public Blueprint replace(BlueBlock find, BlueBlock replace) {
-        return this;
+    public short[][][] getRawMats(){
+        short[][][] rtn = new short[blocks.length][blocks[0].length][blocks[0][0].length];
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks[i].length; j++) {
+                for (int k = 0; k < blocks[i][j].length; k++) {
+                    rtn[i][j][k] = (short) blocks[i][j][k].Block.getId();
+                }
+            }
+        }
+        return rtn;
     }
-
+    
+    public byte[][][] getRawData(){
+        byte[][][] rtn = new byte[blocks.length][blocks[0].length][blocks[0][0].length];
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks[i].length; j++) {
+                for (int k = 0; k < blocks[i][j].length; k++) {
+                    rtn[i][j][k] = blocks[i][j][k].Data;
+                }
+            }
+        }
+        return rtn;
+    }
+    
     public static class BlueBlock {
 
         @Getter
@@ -163,6 +188,11 @@ public class Blueprint implements Cloneable {
         public BlueBlock(short b, byte d) {
             Block = Material.getMaterial(b);
             Data = d;
+        }
+        
+        public BlueBlock(Block b){
+            Block = b.getType();
+            Data = b.getData();
         }
 
         @Override

@@ -25,6 +25,7 @@ import io.dallen.utils.jnbt.StringTag;
 import io.dallen.utils.jnbt.Tag;
 import org.bukkit.util.BlockVector;
 import io.dallen.utils.jnbt.ByteArrayTag;
+import io.dallen.utils.jnbt.NamedTag;
 
 /**
  * Based on code from sk98q's WorldEdit
@@ -43,13 +44,13 @@ public class NbtInterface {
         NBTInputStream nbtStream = new NBTInputStream(new GZIPInputStream(stream));
 
         // Schematic tag
-        Tag rootTag = nbtStream.readTag();
+        NamedTag rootTag = nbtStream.readNamedTag();
         nbtStream.close();
         if (!rootTag.getName().equals("Schematic")) {
             throw new DataFormatException("Tag \"Schematic\" does not exist or is not first");
         }
 
-        CompoundTag schematicTag = (CompoundTag) rootTag;
+        CompoundTag schematicTag = (CompoundTag) rootTag.getTag();
 
         // Check
         Map<String, Tag> schematic = schematicTag.getValue();
