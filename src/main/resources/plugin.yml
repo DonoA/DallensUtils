@@ -1,4 +1,4 @@
 name: ${project.artifactId}
-main: ${project.groupId}.utilities.Utilities
+main: ${project.groupId}.utils.Utilities
 version: ${project.version}
 author: Dallen/Donovan Allen
